@@ -1,0 +1,29 @@
+{% if defending is defined %}
+    {% for test in defending %}
+        <div class="row">
+            <div class="col s6 center-align">
+                <p>Attaquant : {% if test.initiator is null %}MJ{% else %}{{ test.initiator }}{% endif %}</p>
+            </div>
+            <div class="col s6 center-align">
+                <a href="{{ path('test_defend', {'id' : test.id }) }}" class="waves-effect waves-light btn">Défendre</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% if initiating is defined %}
+    {% for test in initiating %}
+
+        <div class="row">
+            <div class="col s6 center-align">
+                <p>Cible : {{ test.defendant }}</p>
+            </div>
+            <div class="col s6 center-align">
+                <a href="{{ path('test_result', {'test' : test.id }) }}"
+                   class="waves-effect waves-light btn">Résultat</a>
+            </div>
+        </div>
+
+    {% endfor %}
+
+{% endif %}

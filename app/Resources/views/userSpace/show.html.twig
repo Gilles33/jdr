@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+        <h3>{{ character.characterName }}</h3>
+        <p>Joueur : {{ character.username }}</p>
+    <h4>Caracs</h4>
+    {% for carac in character.caracs  %}
+        <p>{{ carac }}</p>
+        {% endfor %}
+    <h4>Skills</h4>
+    {% for skill in character.skills %}
+        <p>{{ skill }}</p>
+    {% endfor %}
+{% endblock %}

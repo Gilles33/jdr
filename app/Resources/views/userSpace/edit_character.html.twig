@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h3>Edition de {{ character.username }}</h3>
+    {{ form_start(form) }}
+    {{ form_row(form.characterName) }}
+    <h4>Carac</h4>
+    {% for carac in form.caracs %}
+        {{ form_row(carac, {'label' : carac.vars.value.carac.name}) }}
+    {% endfor %}
+    <h4>Skill</h4>
+    {% for skill in form.skills %}
+        {{ form_row(skill, {'label' : skill.vars.value.skill.name}) }}
+        {% endfor %}
+    {{ form_row(form.save) }}
+    {{ form_end(form) }}
+
+
+{% endblock %}

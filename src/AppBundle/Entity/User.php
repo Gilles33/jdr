@@ -1,5 +1,4 @@
 <?php
-// src/AppBundle/Entity/User.php
 
 namespace AppBundle\Entity;
 
@@ -7,7 +6,7 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * @ORM\Table(name="user")
  */
 class User extends BaseUser
@@ -20,29 +19,36 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
+     *
      */
-    private $firstName;
+    private $characterName;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Test", mappedBy="defendant")
      */
-    private $lastName;
+    private $defending;
 
     /**
-     * @ORM\Column(type="smallint")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Test", mappedBy="initiator")
      */
-    private $strength;
+    private $initiating;
 
     /**
-     * @ORM\Column(type="smallint")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserSkill", mappedBy="user")
      */
-    private $defense;
+    private $skills;
 
     /**
-     * @ORM\Column(type="smallint")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserCarac", mappedBy="user")
      */
-    private $health;
+    private $caracs;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserDiscipline", mappedBy="user")
+     */
+    private $disciplines;
+
 
     public function __construct()
     {
@@ -50,123 +56,223 @@ class User extends BaseUser
         // your own logic
     }
 
+
     /**
-     * Set firstName
+     * Add defending
      *
-     * @param string $firstName
+     * @param \AppBundle\Entity\Test $defending
      *
      * @return User
      */
-    public function setFirstName($firstName)
+    public function addDefending(\AppBundle\Entity\Test $defending)
     {
-        $this->firstName = $firstName;
+        $this->defending[] = $defending;
 
         return $this;
     }
 
     /**
-     * Get firstName
+     * Remove defending
+     *
+     * @param \AppBundle\Entity\Test $defending
+     */
+    public function removeDefending(\AppBundle\Entity\Test $defending)
+    {
+        $this->defending->removeElement($defending);
+    }
+
+    /**
+     * Get defending
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDefending()
+    {
+        return $this->defending;
+    }
+
+    /**
+     * Set characterName
+     *
+     * @param string $characterName
+     *
+     * @return User
+     */
+    public function setCharacterName($characterName)
+    {
+        $this->characterName = $characterName;
+
+        return $this;
+    }
+
+    /**
+     * Get characterName
      *
      * @return string
      */
-    public function getFirstName()
+    public function getCharacterName()
     {
-        return $this->firstName;
+        return $this->characterName;
     }
 
+
     /**
-     * Set lastName
+     * Add initiating
      *
-     * @param string $lastName
+     * @param \AppBundle\Entity\Test $initiating
      *
      * @return User
      */
-    public function setLastName($lastName)
+    public function addInitiating(\AppBundle\Entity\Test $initiating)
     {
-        $this->lastName = $lastName;
+        $this->initiating[] = $initiating;
 
         return $this;
     }
 
     /**
-     * Get lastName
+     * Remove initiating
      *
-     * @return string
+     * @param \AppBundle\Entity\Test $initiating
      */
-    public function getLastName()
+    public function removeInitiating(\AppBundle\Entity\Test $initiating)
     {
-        return $this->lastName;
+        $this->initiating->removeElement($initiating);
     }
 
     /**
-     * Set strength
+     * Get initiating
      *
-     * @param integer $strength
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getInitiating()
+    {
+        return $this->initiating;
+    }
+
+    /**
+     * Set caracteristics
+     *
+     * @param \AppBundle\Entity\UserCarac $caracteristics
      *
      * @return User
      */
-    public function setStrength($strength)
+    public function setCaracteristics(\AppBundle\Entity\UserCarac $caracteristics = null)
     {
-        $this->strength = $strength;
+        $this->caracteristics = $caracteristics;
 
         return $this;
     }
 
     /**
-     * Get strength
+     * Get caracteristics
      *
-     * @return integer
+     * @return \AppBundle\Entity\UserCarac
      */
-    public function getStrength()
+    public function getCaracteristics()
     {
-        return $this->strength;
+        return $this->caracteristics;
     }
 
     /**
-     * Set defense
+     * Add skill
      *
-     * @param integer $defense
+     * @param \AppBundle\Entity\UserSkill $skill
      *
      * @return User
      */
-    public function setDefense($defense)
+    public function addSkill(\AppBundle\Entity\UserSkill $skill)
     {
-        $this->defense = $defense;
+        $this->skills[] = $skill;
 
         return $this;
     }
 
     /**
-     * Get defense
+     * Remove skill
      *
-     * @return integer
+     * @param \AppBundle\Entity\UserSkill $skill
      */
-    public function getDefense()
+    public function removeSkill(\AppBundle\Entity\UserSkill $skill)
     {
-        return $this->defense;
+        $this->skills->removeElement($skill);
     }
 
     /**
-     * Set health
+     * Get skills
      *
-     * @param integer $health
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSkills()
+    {
+        return $this->skills;
+    }
+
+    /**
+     * Add carac
+     *
+     * @param \AppBundle\Entity\UserCarac $carac
      *
      * @return User
      */
-    public function setHealth($health)
+    public function addCarac(\AppBundle\Entity\UserCarac $carac)
     {
-        $this->health = $health;
+        $this->caracs[] = $carac;
 
         return $this;
     }
 
     /**
-     * Get health
+     * Remove carac
      *
-     * @return integer
+     * @param \AppBundle\Entity\UserCarac $carac
      */
-    public function getHealth()
+    public function removeCarac(\AppBundle\Entity\UserCarac $carac)
     {
-        return $this->health;
+        $this->caracs->removeElement($carac);
+    }
+
+    /**
+     * Get caracs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCaracs()
+    {
+        return $this->caracs;
+    }
+
+    /**
+     * Add discipline
+     *
+     * @param \AppBundle\Entity\UserDiscipline $discipline
+     *
+     * @return User
+     */
+    public function addDiscipline(\AppBundle\Entity\UserDiscipline $discipline)
+    {
+        $this->disciplines[] = $discipline;
+
+        return $this;
+    }
+
+    /**
+     * Remove discipline
+     *
+     * @param \AppBundle\Entity\UserDiscipline $discipline
+     */
+    public function removeDiscipline(\AppBundle\Entity\UserDiscipline $discipline)
+    {
+        $this->disciplines->removeElement($discipline);
+    }
+
+    /**
+     * Get disciplines
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDisciplines()
+    {
+        return $this->disciplines;
     }
 }

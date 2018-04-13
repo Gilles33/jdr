@@ -10,4 +10,17 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function findCaracValue($value, $id)
+    {
+        $result = $this->createQueryBuilder('u')
+            ->select('u.'. $value)
+            ->where('u.id = :id' )
+            ->setParameter( 'id', $id)
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        return $result;
+    }
+
 }

@@ -1,0 +1,189 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+
+/**
+ * Caracteristics
+ *
+ * @ORM\Table(name="caracteristics")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CaracteristicsRepository")
+ */
+class Caracteristics
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="magic", type="smallint")
+     */
+    private $magic;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="spirit", type="smallint")
+     */
+    private $spirit;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="resistance", type="smallint")
+     */
+    private $resistance;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="psy", type="smallint")
+     */
+    private $psy;
+
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\User", inversedBy="caracteristics")
+     */
+    private $user;
+
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set magic
+     *
+     * @param integer $magic
+     *
+     * @return Caracteristics
+     */
+    public function setMagic($magic)
+    {
+        $this->magic = $magic;
+
+        return $this;
+    }
+
+    /**
+     * Get magic
+     *
+     * @return int
+     */
+    public function getMagic()
+    {
+        return $this->magic;
+    }
+
+    /**
+     * Set spirit
+     *
+     * @param string $spirit
+     *
+     * @return Caracteristics
+     */
+    public function setSpirit($spirit)
+    {
+        $this->spirit = $spirit;
+
+        return $this;
+    }
+
+    /**
+     * Get spirit
+     *
+     * @return string
+     */
+    public function getSpirit()
+    {
+        return $this->spirit;
+    }
+
+    /**
+     * Set resistance
+     *
+     * @param integer $resistance
+     *
+     * @return Caracteristics
+     */
+    public function setResistance($resistance)
+    {
+        $this->resistance = $resistance;
+
+        return $this;
+    }
+
+    /**
+     * Get resistance
+     *
+     * @return int
+     */
+    public function getResistance()
+    {
+        return $this->resistance;
+    }
+
+    /**
+     * Set psy
+     *
+     * @param integer $psy
+     *
+     * @return Caracteristics
+     */
+    public function setPsy($psy)
+    {
+        $this->psy = $psy;
+
+        return $this;
+    }
+
+    /**
+     * Get psy
+     *
+     * @return int
+     */
+    public function getPsy()
+    {
+        return $this->psy;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Caracteristics
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+}
