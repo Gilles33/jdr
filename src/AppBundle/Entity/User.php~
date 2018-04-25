@@ -49,6 +49,35 @@ class User extends BaseUser
      */
     private $disciplines;
 
+    /**
+     * @ORM\Column(name="clan", type="string", length=120, nullable=true)
+     */
+    private $clan;
+
+    /**
+     * @ORM\Column(name="concept", type="string", length=120, nullable=true)
+     */
+    private $concept;
+
+    /**
+     * @ORM\Column(name="will", type="integer", length=5, nullable=true)
+     */
+    private $will;
+
+    /**
+     * @ORM\Column(name="blood_power", type="string", length=5, nullable=true)
+     */
+    private $bloodPower;
+
+    /**
+     * @ORM\Column(name="total_experience", type="integer", nullable=true)
+     */
+    private $totalExperience;
+
+    /**
+     * @ORM\Column(name="spent_experience", type="integer", nullable=true)
+     */
+    private $spentExperience;
 
     public function __construct()
     {

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * UserSkill
@@ -37,6 +38,12 @@ class UserSkill
      * @var int
      *
      * @ORM\Column(name="value", type="smallint")
+     * @Assert\Range(
+     *     min=0,
+     *     max=5,
+     *     minMessage="la valeur doit être positive",
+     *     maxMessage="la valeur ne peut être supérieure à 5"
+     * )
      */
     private $value;
 

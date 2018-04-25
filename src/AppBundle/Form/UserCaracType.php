@@ -11,6 +11,7 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,8 +20,13 @@ class UserCaracType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('value',IntegerType::class, array(
+            ->add('value',RangeType::class, array(
                 'label' => false,
+                'attr' => array(
+                    'min' => 0,
+                    'max' => 5,
+                    'class' => 'range-field'
+                )
             ))
         ;
     }

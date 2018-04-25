@@ -1,29 +1,24 @@
-{% if defending is defined %}
-    {% for test in defending %}
+{% if results is defined %}
+    {% for result in results %}
         <div class="row">
             <div class="col s6 center-align">
-                <p>Attaquant : {% if test.initiator is null %}MJ{% else %}{{ test.initiator }}{% endif %}</p>
+                {% if is_granted('ROLE_ADMIN') or result.defendant.user != app.user  %}
+                    <p>Cible : {{ result.defendant.user }}</p>
+                {% else %}
+                    <p>Attaquant : {% if result.initiator is null %}MJ{% else %}{{ result.initiator }}{% endif %}</p>
+                {% endif %}
             </div>
+
             <div class="col s6 center-align">
-                <a href="{{ path('test_defend', {'id' : test.id }) }}" class="waves-effect waves-light btn">Défendre</a>
+                {% if result.winner is not null %}
+                    <p>{% if result.winner == app.user %}Gagné{% else %}Perdu{% endif %}</p>
+                {% elseif result.defendant.user == app.user %}
+                    <a href="{{ path('test_defend', {'id' : result.id }) }}" class="waves-effect waves-light btn">Défendre</a>
+                {% else %}
+                    <a href="{{ path('test_result', {'test' : result.id }) }}"
+                       class="waves-effect waves-light btn">Résultat</a>
+                {% endif %}
             </div>
         </div>
     {% endfor %}
-{% endif %}
-
-{% if initiating is defined %}
-    {% for test in initiating %}
-
-        <div class="row">
-            <div class="col s6 center-align">
-                <p>Cible : {{ test.defendant }}</p>
-            </div>
-            <div class="col s6 center-align">
-                <a href="{{ path('test_result', {'test' : test.id }) }}"
-                   class="waves-effect waves-light btn">Résultat</a>
-            </div>
-        </div>
-
-    {% endfor %}
-
 {% endif %}

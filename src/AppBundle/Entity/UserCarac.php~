@@ -43,7 +43,7 @@ class UserCarac
 
     public function __toString()
     {
-        return $this->carac . " : " . $this->value;
+        return $this->carac . "";
     }
 
 

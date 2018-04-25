@@ -2,26 +2,36 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <title>{% block title %}JdR{% endblock %}</title>
+    <title>{% block title %}Vampire{% endblock %}</title>
     {% block stylesheets %}
         <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link href="{{ asset('assets/css/materialize.css') }}" rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet"/>
-    {% endblock %}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-</head>
-<body>
-<div class="container">
-    {% include 'navbar.html.twig' %}
-    {% block body %}{% endblock %}
-    {% block javascripts %}
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="{{ asset('assets/js/materialize.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('assets/js/general.min.js') }}"></script>
+        <link href="{{ asset('build/app.css') }}" rel="stylesheet"/>
     {% endblock %}
 
+</head>
+<body>
+
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper black">
+            <a data-activates="slide-out"
+               class="button-collapse waves-effect waves-light show-on-medium-and-up black" href="#"><i
+                        class="large material-icons">menu</i></a>
+            <a href="{{ path('homepage') }}" class="brand-logo center navbar-title flow-text">Vampire</a>
+
+        </div>
+    </nav>
 </div>
+{% include 'navbar.html.twig' %}
+
+    {% block body %}{% endblock %}
+    {% include 'character_modal.html.twig' %}
+
+
+    {% block javascripts %}
+        <script type="text/javascript" src="{{ asset('build/app.js') }}"></script>
+    {% endblock %}
 </body>
 </html>
 

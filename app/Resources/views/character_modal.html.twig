@@ -1,0 +1,111 @@
+{% if app.user %}
+    <div class="fixed-action-btn">
+        <a href="#modal1" class="btn-floating waves-effect waves-light btn-large modal-trigger black"><i
+                    class="large material-icons">person</i></a>
+    </div>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal bottom-sheet">
+        <div class="modal-content showCharacter center">
+            <a href="#!" class="modal-action modal-close black-text"><i class="material-icons right">close</i></a>
+            <h5>Attributs</h5>
+            <div class="row">
+                <div class="col s12 l2 offset-l3">
+                    <table class="highlight responsive-table centered">
+                        <tbody>
+                        {% for carac in app.user.caracs if carac.carac.category == "Physique" %}
+                            <tr {% if loop.index is odd %}class="red lighten-5" {% endif %}>
+                                <td class="truncate">{{ carac }}</td>
+                                <td>{{ carac.value }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col s12 l2">
+                    <table class="highlight responsive-table centered">
+                        <tbody>
+                        {% for carac in app.user.caracs if carac.carac.category == "Mental" %}
+                            <tr {% if loop.index is even %}class="blue lighten-5" {% endif %}>
+                                <td class="truncate">{{ carac }}</td>
+                                <td>{{ carac.value }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col s12 l2">
+                    <table class="highlight responsive-table centered">
+                        <tbody>
+                        {% for carac in app.user.caracs if carac.carac.category == "Social" %}
+                            <tr {% if loop.index is odd %}class="green lighten-5" {% endif %}>
+                                <td class="truncate">{{ carac }}</td>
+                                <td>{{ carac.value }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+<div class="divider"></div>
+            <h5>Compétences</h5>
+            <div class="row">
+                <i class="material-icons left hide-on-large-only">navigate_before</i><i class="material-icons right hide-on-large-only">navigate_next</i>
+                <div class="col s12 l2 offset-l3">
+                    <table class="highlight responsive-table centered">
+                        <tbody>
+                        {% for skill in app.user.skills if skill.skill.category == "Physique" and skill.value != 0 %}
+                            <tr {% if loop.index is odd %}class="red lighten-5" {% endif %}>
+                                <td class="truncate">{{ skill }}</td>
+                                <td>{{ skill.value }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col s12 l2">
+                    <table class="highlight responsive-table centered">
+                        <tbody>
+                        {% for skill in app.user.skills if skill.skill.category == "Mentale" and skill.value != 0 %}
+                            <tr {% if loop.index is even %}class="blue lighten-5" {% endif %}>
+                                <td class="truncate">{{ skill }}</td>
+                                <td>{{ skill.value }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col s12 l2">
+                    <table class="highlight responsive-table centered">
+                        <tbody>
+                        {% for skill in app.user.skills if skill.skill.category == "Sociale" and skill.value != 0 %}
+                            <tr {% if loop.index is odd %}class="green lighten-5" {% endif %}>
+                                <td class="truncate">{{ skill }}</td>
+                                <td>{{ skill.value }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+            <h5>Disciplines</h5>
+            <div class="row">
+                <div class="col s12 l2 offset-l5">
+                    <table class="highlight responsive-table centered">
+                        <tbody>
+                        {% for discipline in app.user.disciplines if  discipline.value != 0 %}
+                            <tr {% if loop.index is odd %}class="purple lighten-5" {% endif %}>
+                                <td class="truncate">{{ discipline }}</td>
+                                <td>{{ discipline.value }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endif %}

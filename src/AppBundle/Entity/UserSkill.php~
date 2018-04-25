@@ -42,7 +42,7 @@ class UserSkill
 
     public function __toString()
     {
-        return $this->skill . " : " . $this->value;
+        return $this->skill . "";
     }
 
 

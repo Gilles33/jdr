@@ -13,44 +13,35 @@ use AppBundle\Entity\User;
 class TestRepository extends \Doctrine\ORM\EntityRepository
 {
 
-    public function findDefending(User $user)
+    public function findTenByUser(User $user)
     {
         $query = $this->createQueryBuilder('t')
-            ->join('t.defendant', 'td')
-            ->where('td.user=:id')
-            ->andWhere('t.winner is null')
-            ->setParameter('id', $user->getId())
-            ->getQuery();
-
-        $result = $query->getResult();
-
-        return $result;
-    }
-
-
-    public function findInitiating(User $user)
-    {
-        $query = $this->createQueryBuilder('t')
-            ->join('t.initiator', 'ti')
-            ->where('ti.user=:id')
-            ->andWhere('t.winner is null')
-            ->setParameter('id', $user->getId())
-            ->getQuery();
-
-        $result = $query->getResult();
-
-        return $result;
-    }
-
-    public function findAllByUser(User $user)
-    {
-        $query = $this->createQueryBuilder('t')
-            ->join('t.initiator', 'ti')
-            ->join('t.defendant', 'td')
+            ->leftJoin('t.initiator', 'ti')
+            ->leftJoin('t.defendant', 'td')
             ->where('ti.user=:id')
             ->orWhere('td.user=:id')
-            ->andWhere('t.winner IS NOT NULL')
+            //->andWhere('t.winner IS NOT NULL')
+            ->setMaxResults('10')
             ->setParameter('id', $user->getId())
+            ->orderBy('t.id', 'DESC')
+            ->getQuery();
+
+        $result = $query->getResult();
+
+        return $result;
+    }
+
+    public function findTenByAdminUser(User $user)
+    {
+        $query = $this->createQueryBuilder('t')
+            ->leftJoin('t.initiator', 'ti')
+            ->leftJoin('t.defendant', 'td')
+            ->where('t.initiator is NULL')
+            //->orWhere('td.user=:id')
+            //->andWhere('t.winner IS NOT NULL')
+            ->setMaxResults('10')
+            //->setParameter('id', $user->getId())
+            ->orderBy('t.id', 'DESC')
             ->getQuery();
 
         $result = $query->getResult();

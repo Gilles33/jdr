@@ -1,15 +1,148 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="container showCharacter center">
+        <h2>{{ character.characterName }}
+            <small> - {{ character.username }}</small>
+        </h2>
+        <h4>{{ character.clan }}</h4>
+        <h5>{{ character.concept }}</h5>
+        <div class="divider"></div>
+        <div class="row">
+            <div class="col s6">
+                <h5 class="blue-text text-darken-4">Volonté <br> {{ character.will }}</h5>
+            </div>
+            <div class="col s6">
+                <h5 class="red-text text-darken-4">P. de sang <br> {{ character.bloodPower }}</h5>
+            </div>
+        </div>
+        <h5 class="green-text text-darken-4">Expérience <br> {{ character.spentExperience }} / {{ character.totalExperience }}</h5>
+        <div class="divider"></div>
+        <h4>Attributs</h4>
+        <div class="row">
+            <div class="col s12 l2 offset-l3">
+                <table class="highlight responsive-table centered">
+                    <thead>
+                    <tr>
+                        <th class="red-text text-darken-4">Physique</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for carac in character.caracs if carac.carac.category == "Physique" %}
+                        <tr {% if loop.index is odd %}class="red lighten-5" {% endif %}>
+                            <td>{{ carac }}</td>
+                            <td>{{ carac.value }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col s12 l2">
+                <table class="highlight responsive-table centered">
+                    <thead>
+                    <tr>
+                        <th class="blue-text text-darken-4">Mental</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for carac in character.caracs if carac.carac.category == "Mental" %}
+                        <tr{% if loop.index is even %} class="blue lighten-5" {% endif %}>
+                            <td>{{ carac }}</td>
+                            <td>{{ carac.value }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col s12 l2">
+                <table class="highlight responsive-table centered">
+                    <thead>
+                    <tr>
+                        <th class="green-text text-darken-4">Social</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for carac in character.caracs if carac.carac.category == "Social" %}
+                        <tr {% if loop.index is odd %} class="green lighten-5" {% endif %}>
+                            <td>{{ carac }}</td>
+                            <td>{{ carac.value }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-        <h3>{{ character.characterName }}</h3>
-        <p>Joueur : {{ character.username }}</p>
-    <h4>Caracs</h4>
-    {% for carac in character.caracs  %}
-        <p>{{ carac }}</p>
-        {% endfor %}
-    <h4>Skills</h4>
-    {% for skill in character.skills %}
-        <p>{{ skill }}</p>
-    {% endfor %}
+        <div class="divider"></div>
+        <h4>Compétences</h4>
+        <div class="row">
+            <div class="col s12 l2 offset-l3">
+                <table class="highlight responsive-table centered">
+                    <thead>
+                    <tr>
+                        <th class="red-text text-darken-4">Physique</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for skill in character.skills if skill.skill.category == "Physique" %}
+                        <tr {% if loop.index is odd %}class="red lighten-5" {% endif %}>
+                            <td>{{ skill }}</td>
+                            <td>{{ skill.value }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col s12 l2">
+                <table class="highlight responsive-table centered">
+                    <thead>
+                    <tr>
+                        <th class="blue-text text-darken-4">Mental</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for skill in character.skills if skill.skill.category == "Mentale" %}
+                        <tr {% if loop.index is even %} class="blue lighten-5" {% endif %}>
+                            <td>{{ skill }}</td>
+                            <td>{{ skill.value }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col s12 l2">
+                <table class="highlight responsive-table centered">
+                    <thead>
+                    <tr>
+                        <th class="green-text text-darken-4">Social</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for skill in character.skills if skill.skill.category == "Sociale" %}
+                        <tr {% if loop.index is odd %} class="green lighten-5" {% endif %}>
+                            <td>{{ skill }}</td>
+                            <td>{{ skill.value }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <h5>Disciplines</h5>
+        <div class="row">
+            <div class="col s12 l2 offset-l5">
+                <table class="highlight responsive-table centered">
+                    <tbody>
+                    {% for discipline in app.user.disciplines if  discipline.value != 0 %}
+                        <tr {% if loop.index is odd %}class="purple lighten-5" {% endif %}>
+                            <td>{{ discipline }}</td>
+                            <td>{{ discipline.value }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 {% endblock %}
