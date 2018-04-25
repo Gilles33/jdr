@@ -2,19 +2,67 @@
 
 {% block body %}
 
-<h3>Edition de {{ character.username }}</h3>
+    <div class="container">
+    <h3>Edition de {{ character.username }}</h3>
     {{ form_start(form) }}
-    {{ form_row(form.characterName) }}
-    <h4>Carac</h4>
-    {% for carac in form.caracs %}
-        {{ form_row(carac, {'label' : carac.vars.value.carac.name}) }}
-    {% endfor %}
-    <h4>Skill</h4>
-    {% for skill in form.skills %}
-        {{ form_row(skill, {'label' : skill.vars.value.skill.name}) }}
-        {% endfor %}
-    {{ form_row(form.save) }}
-    {{ form_end(form) }}
+    <div class="row">
+        <div class="col s12 l4">
+            {{ form_row(form.characterName) }}
+        </div>
+        <div class="col s6 l4">
+            {{ form_row(form.clan) }}
+        </div>
+        <div class="col s6 l4">
+            {{ form_row(form.concept) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s6 l3">
+            {{ form_row(form.blood_power) }}
+        </div>
+        <div class="col s6 l3">
+            {{ form_row(form.will) }}
+        </div>
+        <div class="col s6 l3">
+            {{ form_row(form.spentExperience) }}
+        </div>
+        <div class="col s6 l3">
+            {{ form_row(form.totalExperience) }}
+        </div>
+    </div>
 
+    <h4>Attributs</h4>
+    <div class="row">
+    {% for carac in form.caracs %}
+    {% if loop.first %}
+    <div class="col s4 m2 offset-m1 characterForm mental">
+        {% elseif loop.index == 4 %}
+        <div class="col s4 m2 offset-m2 characterForm physic">
+            {% elseif loop.index == 7 %}
+            <div class="col s4 m2 offset-m2 characterForm social">
+                {% endif %}
+                {{ form_row(carac, {'label' : carac.vars.value.carac.name}) }}
+                {% if loop.index == 3 or loop.index == 6 or loop.last %}</div>{% endif %}
+            {% endfor %}
+        </div>
+        <h4>Compétences</h4>
+        <div class="row">
+            {% for skill in form.skills %}
+            {% if loop.first %}
+            <div class="col s4 m2 offset-m1 characterForm mental">
+                {% elseif loop.index == 9 %}
+                <div class="col s4 m2 offset-m2 characterForm physic">
+                    {% elseif loop.index == 17 %}
+                    <div class="col s4 m2 offset-m2 characterForm social">
+                        {% endif %}
+                        {{ form_row(skill, {'label' : skill.vars.value.skill.name}) }}
+                        {% if loop.index == 8 or loop.index == 16 or loop.last %}</div>{% endif %}
+                    {% endfor %}
+                </div>
+                {{ form_row(form.save) }}
+                {{ form_end(form) }}
+
+            </div>
+        </div>
 
 {% endblock %}

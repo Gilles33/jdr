@@ -34,12 +34,10 @@ class UserController extends Controller
         //TODO : Reprendre les méthodes pour requeter les tests
         $repository = $this->getDoctrine()->getRepository(Test::class);
 
-        $defending = $repository->findDefending($user);
-        $initiating = $repository->findInitiating($user);
+        $results = $repository->findTenByUser($user);
 
         return $this->render('userSpace/dashboard.html.twig', array(
-            'defending' => $defending,
-            'initiating' => $initiating
+            'results' => $results
         ));
     }
 
@@ -62,7 +60,6 @@ class UserController extends Controller
      */
     public function editAction(User $character, Request $request)
     {
-
         //initialize the caracs for a character
         if(empty($character->getCaracs()->getKeys())) {
             $repository = $this->getDoctrine()->getRepository('AppBundle:Carac');
@@ -77,7 +74,6 @@ class UserController extends Controller
             }
             $em->flush();
         }
-
 
         //initialize the skills for a character
         if (empty($character->getSkills()->getKeys())) {

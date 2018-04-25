@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * @ORM\Table(name="user")
@@ -49,6 +50,35 @@ class User extends BaseUser
      */
     private $disciplines;
 
+    /**
+     * @ORM\Column(name="clan", type="string", length=120, nullable=true)
+     */
+    private $clan;
+
+    /**
+     * @ORM\Column(name="concept", type="string", length=120, nullable=true)
+     */
+    private $concept;
+
+    /**
+     * @ORM\Column(name="will", type="integer", length=5, nullable=true)
+     */
+    private $will;
+
+    /**
+     * @ORM\Column(name="blood_power", type="string", length=5, nullable=true)
+     */
+    private $bloodPower;
+
+    /**
+     * @ORM\Column(name="total_experience", type="integer", nullable=true)
+     */
+    private $totalExperience;
+
+    /**
+     * @ORM\Column(name="spent_experience", type="integer", nullable=true)
+     */
+    private $spentExperience;
 
     public function __construct()
     {
@@ -274,5 +304,149 @@ class User extends BaseUser
     public function getDisciplines()
     {
         return $this->disciplines;
+    }
+
+    /**
+     * Set clan
+     *
+     * @param string $clan
+     *
+     * @return User
+     */
+    public function setClan($clan)
+    {
+        $this->clan = $clan;
+
+        return $this;
+    }
+
+    /**
+     * Get clan
+     *
+     * @return string
+     */
+    public function getClan()
+    {
+        return $this->clan;
+    }
+
+    /**
+     * Set concept
+     *
+     * @param string $concept
+     *
+     * @return User
+     */
+    public function setConcept($concept)
+    {
+        $this->concept = $concept;
+
+        return $this;
+    }
+
+    /**
+     * Get concept
+     *
+     * @return string
+     */
+    public function getConcept()
+    {
+        return $this->concept;
+    }
+
+    /**
+     * Set will
+     *
+     * @param integer $will
+     *
+     * @return User
+     */
+    public function setWill($will)
+    {
+        $this->will = $will;
+
+        return $this;
+    }
+
+    /**
+     * Get will
+     *
+     * @return integer
+     */
+    public function getWill()
+    {
+        return $this->will;
+    }
+
+    /**
+     * Set bloodPower
+     *
+     * @param string $bloodPower
+     *
+     * @return User
+     */
+    public function setBloodPower($bloodPower)
+    {
+        $this->bloodPower = $bloodPower;
+
+        return $this;
+    }
+
+    /**
+     * Get bloodPower
+     *
+     * @return string
+     */
+    public function getBloodPower()
+    {
+        return $this->bloodPower;
+    }
+
+    /**
+     * Set totalExperience
+     *
+     * @param integer $totalExperience
+     *
+     * @return User
+     */
+    public function setTotalExperience($totalExperience)
+    {
+        $this->totalExperience = $totalExperience;
+
+        return $this;
+    }
+
+    /**
+     * Get totalExperience
+     *
+     * @return integer
+     */
+    public function getTotalExperience()
+    {
+        return $this->totalExperience;
+    }
+
+    /**
+     * Set spentExperience
+     *
+     * @param integer $spentExperience
+     *
+     * @return User
+     */
+    public function setSpentExperience($spentExperience)
+    {
+        $this->spentExperience = $spentExperience;
+
+        return $this;
+    }
+
+    /**
+     * Get spentExperience
+     *
+     * @return integer
+     */
+    public function getSpentExperience()
+    {
+        return $this->spentExperience;
     }
 }

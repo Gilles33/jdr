@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+        <div class="container">
+            {% for user in users if user.role('ROLE_ADMIN') == false %}
+                {% if loop.first or (loop.index  -1)  is divisible by(3) %}
+                    <div class="row">
+                {% endif %}
+                <div class="col s12 m4">
+                    <h4 class="header truncate">{{ user.characterName }} -
+                        <small> {{ user.username }}</small>
+                    </h4>
+                    <div class="card horizontal">
+                        <div class="card-image">
+                            <img src="{{ asset('assets/images/batclip.jpg') }}">
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <p>{{ user.clan }}</p>
+                                <p>{{ user.concept }}</p>
+                                <p>Experience : {{ user.spentExperience }} / {{ user.totalExperience }}</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="{{ path('edit_character', {'id' : user.id}) }}" class="cardLink">Editer</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if loop.index is divisible by(3) %}
+                    </div>
+                {% endif %}
+
+            {% endfor %}
+        </div>
+
+
+{% endblock %}

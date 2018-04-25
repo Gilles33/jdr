@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\TestType;
 use AppBundle\Form\StaticTestType;
 use AppBundle\Service\TestCalculator;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class TestController
@@ -27,21 +28,6 @@ use AppBundle\Service\TestCalculator;
  */
 class TestController extends Controller
 {
-
-    /**
-     * @Route("/historique", name="tests")
-     */
-    public function indexAction() {
-
-        $user = $this->getUser();
-        $repository = $this->getDoctrine()->getRepository('AppBundle:Test');
-        $results = $repository->findAllByUser($user);
-
-        return $this->render('test/records.html.twig', array(
-            'results' => $results
-        ));
-    }
-
 
     /**
      * @Route("/", name="test_initiate")
@@ -92,7 +78,6 @@ class TestController extends Controller
         ));
     }
 
-
     /**
      * @Route("/defendre/{id}", name="test_defend")
      * @ParamConverter("test", class="AppBundle:Test")
@@ -133,6 +118,10 @@ class TestController extends Controller
      */
     public function resultAction(Test $test, TestCalculator $testCalculator)
     {
+        $testDefendantSet = $test->getDefendant();
+        if($testDefendantSet->getCarac() === null) {
+            throw new NotFoundHttpException("Le résultat n'existe pas");
+        }
         $result['winner'] = $test->getWinner();
         $user = $this->getUser();
         $summaryAtt = "";

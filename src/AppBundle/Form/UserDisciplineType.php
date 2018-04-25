@@ -24,11 +24,11 @@ class UserDisciplineType extends AbstractType
          $builder->add('discipline', EntityType::class, array(
              'class' => 'AppBundle\Entity\Discipline',
              'required' => 'false',
-             'label' => false,
+             'label' => 'discipline',
              'placeholder' => ''
          ))
              ->add('value', IntegerType::class, array(
-                 'label' => false
+                 'label' => 'valeur',
              ))
          ->add('save', SubmitType::class, array(
              'label' => 'Enregistrer',

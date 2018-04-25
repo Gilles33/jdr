@@ -8,7 +8,7 @@
     {% if csrf_token %}
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
     {% endif %}
-    <div class="container">
+
         <div class="row input-field">
             <label for="username">{{ 'security.login.username'|trans }}</label>
             <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" class="validate"/>
@@ -26,8 +26,8 @@
                    value="{{ 'security.login.submit'|trans }}"/>
         </div>
         <div class="row">
-            <p class="flow-text">Pas encore de compte ? <a href="{{ path('fos_user_registration_register') }}">Créez-en
+            <p>Pas encore de compte ? <a href="{{ path('fos_user_registration_register') }}">Créez-en
                     un !</a></p>
         </div>
-    </div>
+
 </form>

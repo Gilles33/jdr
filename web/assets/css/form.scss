@@ -1,0 +1,49 @@
+
+form {
+  margin-bottom: 5rem;
+  .finalButton {
+    width: 75%;
+    margin-top: 1rem;
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    background-color: darkred;
+  }
+  input[type=range]::-moz-range-thumb {
+    background-color: darkred;
+  }
+  input[type=range]::-ms-thumb {
+    background-color: darkred;
+  }
+  /***** These are to edit the thumb and the text inside the thumb *****/
+  input[type=range] + .thumb {
+    background-color: darkred;
+  }
+  input[type=range] + .thumb.active .value {
+    color: white;
+  }
+
+  @each $color in mental darkblue, physic darkred, social darkgreen {
+    .#{nth($color, 1)} {
+      color: nth($color, 2);
+    }
+    .#{nth($color, 1)} {
+      input[type=range]::-webkit-slider-thumb {
+        background-color: nth($color, 2);
+      }
+      input[type=range]::-moz-range-thumb {
+        background-color: nth($color, 2);
+      }
+      input[type=range]::-ms-thumb {
+        background-color: nth($color, 2);
+      }
+      /***** These are to edit the thumb and the text inside the thumb *****/
+      input[type=range] + .thumb {
+        background-color: nth($color, 2);
+      }
+      input[type=range] + .thumb.active .value {
+        color: white;
+      }
+    }
+  }
+}

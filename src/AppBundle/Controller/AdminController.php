@@ -23,6 +23,7 @@ class AdminController extends Controller
      */
     public function indexAction()
     {
+        $user = $this->getUser();
 
         $repository = $this->getDoctrine()->getRepository(Test::class);
         $initiating = $repository->findBy([
@@ -30,9 +31,25 @@ class AdminController extends Controller
             'winner' => null
         ]);
 
+        $results = $repository->findTenByAdminUser($user);
+
 
         return $this->render('admin/index.html.twig', array(
-            'initiating' => $initiating
+            'initiating' => $initiating,
+            'results' => $results
+        ));
+    }
+
+    /**
+     * @Route("/liste-des-personnages", name="character_list")
+     */
+    public function listCharacterAction()
+    {
+        $repository = $this->getDoctrine()->getRepository('AppBundle:User');
+        $users = $repository->findAll();
+
+        return $this->render('admin/character_list.html.twig', array(
+            'users' => $users
         ));
     }
 

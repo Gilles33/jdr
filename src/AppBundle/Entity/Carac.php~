@@ -28,6 +28,12 @@ class Carac
      */
     private $name;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="category", type="string", length=60)
+     */
+    private $category;
 
     public function __toString()
     {
@@ -67,5 +73,29 @@ class Carac
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set category
+     *
+     * @param string $category
+     *
+     * @return Carac
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

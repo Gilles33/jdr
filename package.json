@@ -1,0 +1,34 @@
+{
+  "name": "jdr",
+  "version": "1.0.0",
+  "description": "jdr ===",
+  "main": "webpack.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "hammerjs": "^2.0.8",
+    "jquery": "^3.3.1",
+    "nouislider": "^11.1.0"
+  },
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.20.0",
+    "materialize-css": "^1.0.0-beta",
+    "node-sass": "^4.8.3",
+    "sass-loader": "^7.0.1",
+    "webpack-notifier": "^1.6.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gilles33/jdr.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gilles33/jdr/issues"
+  },
+  "homepage": "https://github.com/Gilles33/jdr#readme"
+}

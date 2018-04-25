@@ -16,4 +16,5 @@
 /vendor/
 /web/scss/
 /vendor/materialize/
+/node_modules
 
