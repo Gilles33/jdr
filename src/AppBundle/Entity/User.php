@@ -28,12 +28,12 @@ class User extends BaseUser
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Test", mappedBy="defendant")
      */
-    private $defending;
+//    private $defending;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Test", mappedBy="initiator")
      */
-    private $initiating;
+//    private $initiating;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserSkill", mappedBy="user")
@@ -94,7 +94,7 @@ class User extends BaseUser
      *
      * @return User
      */
-    public function addDefending(\AppBundle\Entity\Test $defending)
+/**    public function addDefending(\AppBundle\Entity\Test $defending)
     {
         $this->defending[] = $defending;
 
@@ -106,7 +106,7 @@ class User extends BaseUser
      *
      * @param \AppBundle\Entity\Test $defending
      */
-    public function removeDefending(\AppBundle\Entity\Test $defending)
+/**    public function removeDefending(\AppBundle\Entity\Test $defending)
     {
         $this->defending->removeElement($defending);
     }
@@ -116,7 +116,7 @@ class User extends BaseUser
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getDefending()
+ /**   public function getDefending()
     {
         return $this->defending;
     }
@@ -153,7 +153,7 @@ class User extends BaseUser
      *
      * @return User
      */
-    public function addInitiating(\AppBundle\Entity\Test $initiating)
+ /**   public function addInitiating(\AppBundle\Entity\Test $initiating)
     {
         $this->initiating[] = $initiating;
 
@@ -165,7 +165,7 @@ class User extends BaseUser
      *
      * @param \AppBundle\Entity\Test $initiating
      */
-    public function removeInitiating(\AppBundle\Entity\Test $initiating)
+ /**   public function removeInitiating(\AppBundle\Entity\Test $initiating)
     {
         $this->initiating->removeElement($initiating);
     }
@@ -175,7 +175,7 @@ class User extends BaseUser
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getInitiating()
+ /**   public function getInitiating()
     {
         return $this->initiating;
     }

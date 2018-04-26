@@ -22,7 +22,8 @@
                                 <p>Experience : {{ user.spentExperience }} / {{ user.totalExperience }}</p>
                             </div>
                             <div class="card-action">
-                                <a href="{{ path('edit_character', {'id' : user.id}) }}" class="cardLink">Editer</a>
+                                <a href="{{ path('edit_character', {'id' : user.id}) }}" class="cardLink tooltipped" data-tooltip="éditer"><i class="material-icons left">edit</i></a>
+                                <a href="{{ path('delete_character', {'id' : user.id}) }}" class="cardLink right tooltipped" data-tooltip="supprimer" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce personnage ?')"><i class="material-icons">delete_forever</i></a>
                             </div>
                         </div>
                     </div>

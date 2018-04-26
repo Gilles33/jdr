@@ -5,3 +5,4 @@ require('../js/materialize.min');
 require('../js/navbar.js');
 require('../js/homepage');
 require('../js/form');
+require('../js/resultAnimation');
