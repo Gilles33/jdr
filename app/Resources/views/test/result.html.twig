@@ -1,24 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
-    <h3>Résultat</h3>
+    <div class="black">
+        <div class="container">
+            {% if not result.winner %}
+                <p>L'adversaire n'a pas encore fait son jet</p>
+                <div class="col s12 center-align">
+                    <a href="{{ app.request.uri }}" class="waves-effect waves-light btn-large">Rafraichir</a>
+                </div>
+            {% elseif app.user == result.winner %}
+                <div id="successResult"></div>
+            {% else %}
+                <div id="failResult"></div>
+            {% endif %}
 
-    {% if not result.winner %}
-        <p>L'adversaire n'a pas encore fait son jet</p>
-        <div class="col s12 center-align">
-            <a href="{{ app.request.uri }}" class="waves-effect waves-light btn-large">Rafraichir</a>
-        </div>
-    {% elseif app.user == result.winner %}
-        <p>Succès</p>
-    {% else %}
-        <p>Échec</p>
-    {% endif %}
 
-    <div class="row">
-        <div class="col s12 center-align">
-            <a href="{{ path('dashboard') }}" class="waves-effect waves-light btn-large">Retour aux actions</a>
+                <div class="col s12 center-align">
+                    <a href="{{ path('dashboard') }}" class="waves-effect waves-light btn-large white black-text bottomButton">Retour aux actions</a>
+                </div>
+
         </div>
-    </div>
     </div>
 {% endblock %}

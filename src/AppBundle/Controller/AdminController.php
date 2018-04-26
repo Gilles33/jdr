@@ -9,6 +9,7 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Test;
@@ -53,6 +54,18 @@ class AdminController extends Controller
         ));
     }
 
+    /**
+     * @Route("/personnage/supprimer/{id}", name="delete_character")
+     */
+    public function deleteCharacterAction(User $user)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($user);
+        $em->flush();
+
+        return $this->redirectToRoute('character_list');
+
+    }
 
 
 }

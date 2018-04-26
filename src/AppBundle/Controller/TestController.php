@@ -119,8 +119,10 @@ class TestController extends Controller
     public function resultAction(Test $test, TestCalculator $testCalculator)
     {
         $testDefendantSet = $test->getDefendant();
-        if($testDefendantSet->getCarac() === null) {
-            throw new NotFoundHttpException("Le résultat n'existe pas");
+        $testInitiatorSet = $test->getInitiator();
+        if($testInitiatorSet !== null)
+        if($testDefendantSet->getUser() !== $this->getUser() && $testInitiatorSet->getUser() !== $this->getUser()) {
+           throw new NotFoundHttpException();
         }
         $result['winner'] = $test->getWinner();
         $user = $this->getUser();

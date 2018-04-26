@@ -14,7 +14,7 @@
 
         </div>
         {% if app.user %}
-            <h1 class="black-text flow-text">{{ app.user.username }}</h1>
+            <h1 class="black-text flow-text truncate">{{ app.user.username }}</h1>
         {% endif %}
     </li>
     {% if is_granted('ROLE_ADMIN') == false %}
